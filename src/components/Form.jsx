@@ -2,14 +2,15 @@ import styles from "./form.module.css";
 import { useState } from "react";
 
 const Form = ({ todos, setTodos }) => {
-  const [todo, setTodo] = useState("");
+  //const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState({name:"",done:false});
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (todo.trim()) {
-      setTodos([...todos, todo]);
-      setTodo("");
-    }
+    setTodos([...todos, todo]);
+    setTodo({name:"",done:false});
+    
   };
 
   return (
@@ -17,8 +18,8 @@ const Form = ({ todos, setTodos }) => {
       <form className={styles.todoform} onSubmit={handleSubmit}>
         <div className={styles.inputContainer}>
         <input className={styles.modernInput}
-          value={todo}
-          onChange={(e) => setTodo(e.target.value)}
+          value={todo.name}
+          onChange={(e) => setTodo({name:e.target.value,done:false})}
           type="text"
           placeholder="Enter a task"
         />
